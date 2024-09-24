@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "458700474749",
+    "project_id": "holberon-app",
+    "storage_bucket": "holberon-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458700474749:android:056f57d1db016e6fd42414",
+        "android_client_info": {
+          "package_name": "com.example.verygoodcore.holberton_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMgAtTxHXRNqsdHsPlOoenBU8DeS5VpMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
