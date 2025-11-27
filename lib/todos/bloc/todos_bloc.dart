@@ -27,7 +27,6 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     Emitter<TodosState> emit,
   ) async {
     emit(state.copyWith(status: () => TodosStatus.loading));
-
     await emit.forEach<List<Todo>>(
       _todosRepository.getTodos(),
       onData: (todos) => state.copyWith(

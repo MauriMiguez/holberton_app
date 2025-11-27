@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:todos_repository/todos_repository.dart';
 
 /// {@template todo_exception}
-/// An exception to throw when there is an error fetching the todo.
+// An exception to throw when there is an error fetching the `todo`.
 /// {@endtemplate}
 class TodoException implements Exception {
   /// {@macro todo_exception}
@@ -34,8 +34,9 @@ class TodosRepository {
   TodosRepository({
     required FirebaseFirestore firebaseFirestore,
   }) : todosCollection = firebaseFirestore.collection('todos').withConverter(
-            fromFirestore: (snapshot, _) => Todo.fromJson(snapshot.data()!),
-            toFirestore: (todo, _) => todo.toJson());
+              fromFirestore: (snapshot, _) => Todo.fromJson(snapshot.data()!),
+              toFirestore: (todo, _) => todo.toJson(),
+            );
 
   /// The [CollectionReference] for the todos.
   final CollectionReference<Todo> todosCollection;
@@ -78,9 +79,9 @@ class TodosRepository {
   ///
   /// Returns the number of deleted todos.
   Future<int> clearCompleted() async {
-     try {
-      final snapshot = await todosCollection.where('isCompleted', isEqualTo: true)
-      .get();
+    try {
+      final snapshot =
+          await todosCollection.where('isCompleted', isEqualTo: true).get();
       for (final doc in snapshot.docs) {
         await doc.reference.delete();
       }
@@ -94,8 +95,8 @@ class TodosRepository {
   /// Sets the `isCompleted` state of all todos to the given value.
   ///
   /// Returns the number of updated todos.
-  Future<int> completeAll({required bool isCompleted})async {
-     try {
+  Future<int> completeAll({required bool isCompleted}) async {
+    try {
       final snapshot = await todosCollection.get();
       for (final doc in snapshot.docs) {
         await doc.reference.update({'isCompleted': isCompleted});

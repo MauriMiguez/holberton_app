@@ -25,13 +25,9 @@ class TodosOptionsButton extends StatelessWidget {
       onSelected: (options) {
         switch (options) {
           case TodosOption.toggleAll:
-            context
-                .read<TodosBloc>()
-                .add(const TodosToggleAllRequested());
+            context.read<TodosBloc>().add(const TodosToggleAllRequested());
           case TodosOption.clearCompleted:
-            context
-                .read<TodosBloc>()
-                .add(const TodosClearCompletedRequested());
+            context.read<TodosBloc>().add(const TodosClearCompletedRequested());
         }
       },
       itemBuilder: (context) {

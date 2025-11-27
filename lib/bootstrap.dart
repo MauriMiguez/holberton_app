@@ -24,7 +24,9 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(FutureOr<Widget> Function(TodosRepository) builder) async {
+Future<void> bootstrap(
+  FutureOr<Widget> Function(TodosRepository) builder,
+) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
@@ -38,7 +40,8 @@ Future<void> bootstrap(FutureOr<Widget> Function(TodosRepository) builder) async
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  final todosRepository = TodosRepository(firebaseFirestore: FirebaseFirestore.instance);
+  final todosRepository =
+      TodosRepository(firebaseFirestore: FirebaseFirestore.instance);
 
   runApp(await builder(todosRepository));
 }

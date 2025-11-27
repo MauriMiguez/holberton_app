@@ -80,4 +80,3 @@ class _HomeTabButton extends StatelessWidget {
     );
   }
 }
-

@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:holberton_app/edit_todo/edit_todo.dart';
-import 'package:holberton_app/todos/todos.dart';
 import 'package:holberton_app/l10n/l10n.dart';
+import 'package:holberton_app/todos/todos.dart';
 import 'package:todos_repository/todos_repository.dart';
-
 
 class TodosPage extends StatelessWidget {
   const TodosPage({super.key});
@@ -115,9 +114,7 @@ class TodosView extends StatelessWidget {
                             );
                       },
                       onDismissed: (_) {
-                        context
-                            .read<TodosBloc>()
-                            .add(TodosTodoDeleted(todo));
+                        context.read<TodosBloc>().add(TodosTodoDeleted(todo));
                       },
                       onTap: () {
                         Navigator.of(context).push(

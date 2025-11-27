@@ -15,7 +15,7 @@ final class TodosState extends Equatable {
   final TodosFilter filter;
   final Todo? lastDeletedTodo;
 
-  Iterable<Todo> get filteredTodos =>  filter.applyAll(todos);
+  Iterable<Todo> get filteredTodos => filter.applyAll(todos);
 
   TodosState copyWith({
     TodosStatus Function()? status,

@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:uuid/uuid.dart';
 
-
 /// {@template todo_item}
 /// A single `todo` item.
 ///
@@ -13,7 +12,7 @@ import 'package:uuid/uuid.dart';
 /// will be generated.
 ///
 /// [Todo]s are immutable and can be copied using [copyWith], in addition to
-/// being serialized and deserialized using [toJson] and [fromJson]
+/// being serialized and deserialized using [toJson] and [Todo.fromJson]
 /// respectively.
 /// {@endtemplate}
 @immutable
@@ -21,14 +20,24 @@ class Todo extends Equatable {
   /// {@macro todo_item}
   Todo({
     required this.title,
-     String? id,
+    String? id,
     this.description = '',
     this.isCompleted = false,
-  }) : assert(
+  })  : assert(
           id == null || id.isNotEmpty,
           'id must either be null or not empty',
         ),
         id = id ?? const Uuid().v4();
+
+  /// Deserializes the given [JsonMap] into a [Todo].
+  factory Todo.fromJson(JsonMap json) {
+    return Todo(
+      id: json['id'] as String,
+      title: json['title'] as String,
+      description: json['description'] as String,
+      isCompleted: json['isCompleted'] as bool,
+    );
+  }
 
   /// The unique identifier of the `todo`.
   ///
@@ -67,16 +76,6 @@ class Todo extends Equatable {
     );
   }
 
-  /// Deserializes the given [JsonMap] into a [Todo].
-  static Todo fromJson(JsonMap json) {
-    return Todo(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
-      isCompleted: json['isCompleted'] as bool,
-    );
-  }
-
   /// Converts this [Todo] into a [JsonMap].
   JsonMap toJson() {
     return {
@@ -90,7 +89,6 @@ class Todo extends Equatable {
   @override
   List<Object> get props => [id, title, description, isCompleted];
 }
-
 
 /// The type definition for a JSON-serializable [Map].
 typedef JsonMap = Map<String, dynamic>;
